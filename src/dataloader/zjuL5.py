@@ -78,8 +78,8 @@ class DataLoadPreprocess(Dataset):
 
         path_file = os.path.join(self.data_path,
                                 self.sample_list[idx]['filename'])
-        path_file = os.path.join(self.data_path,
-                                 'supermarket/1645003481.207611.h5')
+        # path_file = os.path.join(self.data_path,
+        #                          'supermarket/1645003481.207611.h5')
         f = h5py.File(path_file, 'r')
         rgb_h5 = f['rgb'][:]
         dep_h5 = f['depth'][:]

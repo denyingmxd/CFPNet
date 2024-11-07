@@ -90,6 +90,8 @@ parser.add_argument('--no_skip_inside',action='store_true')
 parser.add_argument('--outside_zone_area_only',action='store_true')
 parser.add_argument('--zone_area_only',action='store_true')
 parser.add_argument('--zone_type',type=str,default='8x8')
+parser.add_argument('--selected_epoch',type=str,default='-1')
+
 
 
 if sys.argv.__len__() == 2:

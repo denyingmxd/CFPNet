@@ -139,13 +139,18 @@ if __name__ == '__main__':
         model=make_model(args)
         model = model.to(device)
 
-        possible_names = os.listdir(os.path.join('weights',args.name))
-        here_name = [i for i in possible_names if i.startswith(f'{ep}_')]
-        assert len(here_name)<=1
-        if len(here_name) ==0:
-            continue
-        here_name = here_name[0]
-        weight_path = os.path.join('weights',args.name, f"{here_name}")
+        if args.selected_epoch !='-1':
+            here_name = args.selected_epoch
+            weight_path = os.path.join('weights', args.name, f"{here_name}.pt")
+        else:
+            possible_names = os.listdir(os.path.join('weights',args.name))
+            here_name = [i for i in possible_names if i.startswith(f'{ep}_')]
+            assert len(here_name)<=1
+            if len(here_name) ==0:
+                continue
+            here_name = here_name[0]
+            weight_path = os.path.join('weights',args.name, f"{here_name}")
+
         model = load_weights(model,weight_path)
         model = model.eval()
 
@@ -153,6 +158,8 @@ if __name__ == '__main__':
         worksheet.cell(ep + 2, 1, ep)
         for i, metric in enumerate(['a1', 'a2', 'a3', 'abs_rel', 'rmse', 'log_10', 'rmse_log','silog', 'sq_rel']):
             worksheet.cell(ep+2, i + 2, results[metric])
+        if args.selected_epoch != '-1':
+            break
         # break
     if 'nyu' in args.test_dataset:
         workbook.save(filename=os.path.join(args.save_dir,'results_nyu.xlsx'))

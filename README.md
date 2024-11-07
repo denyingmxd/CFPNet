@@ -41,10 +41,14 @@ python train.py @configs/train_deltar_change_embedding_no_clip_grad_hist_encoder
 
 ### Command to evaluate on the NYU and ZJUL5 dataset
 ```bash
-python evaluate_all.py @configs/train_deltar_change_embedding_no_clip_grad_hist_encoder_optimized_10x_combine1.txt
-python evaluate_all.py @configs/train_deltar_change_embedding_no_clip_grad_hist_encoder_optimized_10x_combine1.txt --test_dataset nyu
+python evaluate_all.py @configs/train_deltar_change_embedding_no_clip_grad_hist_encoder_optimized_10x_combine1.txt --selected_epoch best
+python evaluate_all.py @configs/train_deltar_change_embedding_no_clip_grad_hist_encoder_optimized_10x_combine1.txt --test_dataset nyu --selected_epoch best
 ```
 
+Note that we train on the NYU dataset and evaluate on both the NYU and ZJUL5 datasets. The model that perform the best
+on NYU dataset will be chosen to evaluate on the ZJUL5 dataset. This follows the same protocol as the DELTAR.
+
+If you do not set the selected_epoch, the code will go through all available epochs and generate an excel file that contains the result for all epochs.
 
 
 
