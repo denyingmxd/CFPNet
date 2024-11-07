@@ -194,62 +194,6 @@ class DataLoadPreprocess(Dataset):
             'my_mask': my_mask,
         }
 
-        # np.pad(image[aa:cc, bb:dd, :], ((aa, self.args.input_height - cc), (bb, self.args.input_width - dd), (0, 0)))
-
-        # plt.imshow(image)
-        #
-        # for i, xxx in enumerate(fr):
-        #     a, b, c, d = xxx
-        #     if mask[i]:
-        #         plt.gca().add_patch(Rectangle((b, a), c - a, d - b,
-        #                                   edgecolor='red',
-        #                                   facecolor='none',
-        #                                   lw=4))
-        # plt.show()
-        #
-        #
-        # plt.imshow(depth_gt)
-        # plt.colorbar()
-        # for i, xxx in enumerate(fr):
-        #     a, b, c, d = xxx
-        #     if mask[i]:
-        #         plt.gca().add_patch(Rectangle((b, a), c - a, d - b,
-        #                                   edgecolor='red',
-        #                                   facecolor='none',
-        #                                   lw=4))
-        # plt.show()
-        #
-        # plt.imshow(sample['image'].permute(1, 2, 0))
-        #
-        # for i, xxx in enumerate(fr):
-        #     a, b, c, d = xxx
-        #     if mask[i]:
-        #         plt.gca().add_patch(Rectangle((b, a), c - a, d - b,
-        #                                       edgecolor='red',
-        #                                       facecolor='none',
-        #                                       lw=4))
-        # plt.show()
-        #
-        # plt.imshow(sample['depth'].permute(1, 2, 0))
-        # plt.colorbar()
-        # for i, xxx in enumerate(fr):
-        #     a, b, c, d = xxx
-        #     if mask[i]:
-        #         plt.gca().add_patch(Rectangle((b, a), c - a, d - b,
-        #                                       edgecolor='red',
-        #                                       facecolor='none',
-        #                                       lw=4))
-        # plt.show()
-        #
-        # plt.imshow(hist_data[:, 0].reshape(6, 6))
-        # plt.colorbar()
-        # plt.show()
-        # plt.imshow(hist_data[:, 1].reshape(6, 6))
-        # plt.colorbar()
-        # plt.show()
-        # plt.imshow(fh.mean(1).reshape(6, 6))
-        # plt.colorbar()
-        # plt.show()
 
         return sample
 

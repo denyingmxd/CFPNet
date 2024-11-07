@@ -40,10 +40,6 @@ def predict_tta(model, input_data, args):
     pred = np.clip(pred.cpu().numpy(), args.min_depth, args.max_depth)
     pred = nn.functional.interpolate(torch.from_numpy(pred), input_data['rgb'].shape[-2:], mode='bilinear', align_corners=True)
     prob = nn.functional.interpolate(prob, input_data['rgb'].shape[-2:], mode='bilinear', align_corners=True)
-    if args.test_refine:
-        pred_refine = np.clip(pred_refine.cpu().numpy(), args.min_depth, args.max_depth)
-        pred_refine = nn.functional.interpolate(torch.Tensor(pred_refine), input_data['rgb'].shape[-2:], mode='bilinear', align_corners=True)
-        prob_residual = nn.functional.interpolate(torch.Tensor(prob_residual), input_data['rgb'].shape[-2:], mode='bilinear', align_corners=True)
 
     return pred,  prob
 

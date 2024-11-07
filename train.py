@@ -72,13 +72,7 @@ def train(model, args, epochs=10, experiment_name="DeepLab", lr=0.0001,
         test_loader = NYUV2(args, 'online_eval').data
 
     criterion_ueff = SILogLoss()
-    if args.use_my_loss:
-        if args.my_loss_name == 'loss1':
-            my_loss = MyLoss1()
-        if args.my_loss_name == 'loss2':
-            my_loss = MyLoss2()
-        if args.my_loss_name == 'loss3':
-            my_loss = MyLoss3()
+
     model.train()
 
     m = model.module
@@ -127,13 +121,8 @@ def train(model, args, epochs=10, experiment_name="DeepLab", lr=0.0001,
             mask = depth > args.min_depth
             pred = torch.clip(pred,args.min_depth)
             loss = criterion_ueff(pred, depth, mask=mask.to(torch.bool), interpolate=True)
-            # xxx = loss.detach().clone()
-            # yyy= 0
-            if args.use_my_loss:
-                yyy = my_loss(pred, depth,additional_data['my_mask'].to(torch.bool),
-                              sample_num = args.my_loss_num,
-                              mask=mask.to(torch.bool), interpolate=True) * args.my_loss_weight
-                loss += yyy
+
+
             # print(xxx,yyy)
             loss.backward()
             if args.disable_clip_grad:
@@ -141,19 +130,6 @@ def train(model, args, epochs=10, experiment_name="DeepLab", lr=0.0001,
             else:
                 nn.utils.clip_grad_norm_(model.parameters(), 0.1)  # optional
             optimizer.step()
-            # if logging and step % 5 == 0:
-            #     wandb.log({f"Train/{criterion_ueff.name}": loss.detach().item()}, step=step)
-
-            # if logging and step % 100 == 0:
-            #     xxx = wandb.Image(batch['image'][0], caption='step: {}'.format(step))
-            #     wandb.log({"Train/rgb": xxx})
-            #     xxx = wandb.Image(batch['depth'][0][0], caption='step: {}'.format(step))
-            #     wandb.log({"Train/depth": xxx})
-            #     xxx = wandb.Image(pred[0][0], caption='step: {}'.format(step))
-            #     wandb.log({"Train/pred": xxx})
-            #     xxx = wandb.Image(additional_data['mask'][0].reshape(args.train_zone_num,args.train_zone_num).float(), caption='step: {}'.format(step))
-            #     wandb.log({"Train/mask": xxx})
-            # break
 
             step += 1
             scheduler.step()
@@ -210,14 +186,6 @@ def validate(args, model, test_loader, criterion_loss, epoch, epochs, device='cp
             val_si.append(loss.detach().item())
             pred = nn.functional.interpolate(pred, depth.shape[-2:], mode='bilinear', align_corners=True)
 
-            # if logging and i == 0:
-            #     wandb_rgb = wandb.Image(img[0], caption=f"epoch:{epoch}")
-            #     wandb_pred =  wandb.Image(pred[0,0], caption=f"epoch:{epoch}")
-            #     wandb_depth =  wandb.Image(depth[0,0], caption=f"epoch:{epoch}")
-            #
-            #     wandb.log({"Test/rgb":wandb_rgb})
-            #     wandb.log({"Test/depth":wandb_depth})
-            #     wandb.log({"Test/pred": wandb_pred})
 
 
             pred = pred.squeeze().cpu().numpy()

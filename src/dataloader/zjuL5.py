@@ -130,10 +130,6 @@ class DataLoadPreprocess(Dataset):
                 mask = mask[valid_mask]
                 hist_data = hist_data[valid_mask]
                 fr = fr[valid_mask]
-            # if self.args.zone_type == '4x4':
-            #     mask = mask.reshape(8, 8)
-            #     mask[3:6, 3:6] = 0
-            #     mask = mask.reshape(64)
 
         fh = sample_point_from_hist_parallel(hist_data, mask, self.args)
         patch_info = patch_info_from_rect_data(fr)
@@ -141,8 +137,7 @@ class DataLoadPreprocess(Dataset):
         my_mask = torch.zeros_like(sample['depth'])
         aa, bb = fr[0, :2].int()
         cc, dd = fr[-1, 2:].int()
-        # aa,bb = max(0, aa), max(0, bb)
-        # cc,dd = min(480, cc), min(640, dd)
+
 
         aa,bb = min(max(0, aa),480), min(max(0, bb),640)
         cc,dd = min(max(0, cc),480), min(max(0, dd),640)
@@ -156,41 +151,6 @@ class DataLoadPreprocess(Dataset):
             'patch_info': patch_info,
             'my_mask': my_mask,
         }
-        # if sample['additional']['mask'].sum()==0:
-        #     print(idx)
-        #     raise NotImplementedError('No valid mask')
-
-        # plt.imshow(image)
-        #
-        # for i, xxx in enumerate(fr):
-        #     a, b, c, d = xxx
-        #     if mask[i]:
-        #         plt.gca().add_patch(Rectangle((b, a), c - a, d - b,
-        #                                   edgecolor='red',
-        #                                   facecolor='none',
-        #                                   lw=4))
-        # plt.show()
-        #
-        #
-        # plt.imshow(depth_gt)
-        # plt.colorbar()
-        # for i, xxx in enumerate(fr):
-        #     a, b, c, d = xxx
-        #     if mask[i]:
-        #         plt.gca().add_patch(Rectangle((b, a), c - a, d - b,
-        #                                   edgecolor='red',
-        #                                   facecolor='none',
-        #                                   lw=4))
-        # plt.show()
-        # plt.imshow(hist_data[:, 0].reshape(8, 8))
-        # plt.colorbar()
-        # plt.show()
-        # plt.imshow(hist_data[:, 1].reshape(8, 8))
-        # plt.colorbar()
-        # plt.show()
-        # plt.imshow(fh.mean(1).reshape(8, 8))
-        # plt.colorbar()
-        # plt.show()
 
         return sample
 

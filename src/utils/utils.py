@@ -3,50 +3,11 @@ import torch
 import torch.nn
 
 from src.models.deltar import Deltar
-from src.models.deltar_rgb import Deltar_rgb
-from src.models.deltar_no_refine import Deltar_no_refine
-from src.models.deltar_residual_1 import Deltar_residual_1
-from src.models.deltar_residual_2 import Deltar_residual_2
-from src.models.deltar_residual_3 import Deltar_residual_3
-from src.models.deltar_residual_4 import Deltar_residual_4
-from src.models.deltar_refine_1 import Deltar_refine_1
-from src.models.deltar_refine_2 import Deltar_refine_2
-from src.models.deltar_refine_3 import Deltar_refine_3
-from src.models.deltar_refine_4 import Deltar_refine_4
+
 def make_model(args):
     if args.model_name=='deltar':
         model = Deltar(n_bins=args.n_bins, min_val=args.min_depth,
                         max_val=args.max_depth, norm=args.norm)
-    elif args.model_name=='deltar_residual_1':
-        model = Deltar_residual_1(n_bins=args.n_bins, min_val=args.min_depth,
-                        max_val=args.max_depth, norm=args.norm)
-    elif args.model_name=='deltar_residual_2':
-        model = Deltar_residual_2(n_bins=args.n_bins, min_val=args.min_depth,
-                        max_val=args.max_depth, norm=args.norm)
-    elif args.model_name=='deltar_residual_3':
-        model = Deltar_residual_3(n_bins=args.n_bins, min_val=args.min_depth,
-                        max_val=args.max_depth, norm=args.norm)
-    elif args.model_name=='deltar_residual_4':
-        model = Deltar_residual_4(n_bins=args.n_bins, min_val=args.min_depth,
-                        max_val=args.max_depth, norm=args.norm)
-    elif args.model_name=='deltar_rgb':
-        model = Deltar_rgb(n_bins=args.n_bins, min_val=args.min_depth,
-                       max_val=args.max_depth, norm=args.norm)
-    elif args.model_name == 'deltar_no_refine':
-        model = Deltar_no_refine(n_bins=args.n_bins, min_val=args.min_depth,
-                           max_val=args.max_depth, norm=args.norm,d_type=args.d_type)
-    elif args.model_name == 'deltar_refine_1':
-        model = Deltar_refine_1(n_bins=args.n_bins, min_val=args.min_depth,
-                                 max_val=args.max_depth, norm=args.norm)
-    elif args.model_name == 'deltar_refine_2':
-        model = Deltar_refine_2(n_bins=args.n_bins, min_val=args.min_depth,
-                                 max_val=args.max_depth, norm=args.norm)
-    elif args.model_name == 'deltar_refine_3':
-        model = Deltar_refine_3(n_bins=args.n_bins, min_val=args.min_depth,
-                                 max_val=args.max_depth, norm=args.norm)
-    elif args.model_name == 'deltar_refine_4':
-        model = Deltar_refine_4(n_bins=args.n_bins, min_val=args.min_depth,
-                                 max_val=args.max_depth, norm=args.norm)
     return model
 
 

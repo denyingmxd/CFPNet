@@ -31,7 +31,7 @@ noise_prob: 0.30
 train_zone_num: 6
 model_name: deltar
 name: debug
-attention_layer: [hist2image, cvxt28, image, hist2image, cvxt28, image]
+attention_layer: [hist2image, image, hist2image, image]
 #attention_layer: [hist2image, image, hist2image, image]
 change_embedding: True
 disable_clip_grad: True
