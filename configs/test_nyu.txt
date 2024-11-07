@@ -1,0 +1,21 @@
+--data_path_eval /data/laiyan/codes/deltar/data/nyu_depth_v2/official_split/test
+--filenames_file_eval train_test_split/nyu_sync.json
+--filenames_file train_test_split/nyu_sync.json
+--input_height 480
+--input_width 640
+--max_depth 10
+--min_depth 1e-3
+--n_bins 256
+--min_depth_eval 1e-3
+--max_depth_eval 10
+--zone_sample_num 16
+--attention_layer hist2image combine13 image hist2image combine13 image
+--change_embedding
+--weight_path /data/laiyan/codes/deltar/weights/train_deltar_change_embedding_no_clip_grad_hist_encoder_optimized_10x_combine13/25_0.254.pt
+--model_name deltar
+--save_dir results/train_deltar_change_embedding_no_clip_grad_hist_encoder_optimized_10x_combine13
+--save_rgb
+--save_error_map
+--save_pred
+--save_gt
+--test_dataset nyu
