@@ -1,7 +1,7 @@
 # CFPNet: Improving Lightweight ToF Depth Completion via Cross-zone Feature Propagation
 ###  [Paper]
 
-The paper has been accepted to 3DV 2025. The arxiv version of the paper is at [here](https://arxiv.org/abs/2109.14894).
+The paper has been accepted to 3DV 2025. The arxiv version of the paper is at [here](https://arxiv.org/pdf/2411.04480).
 
 
 ### Installation
