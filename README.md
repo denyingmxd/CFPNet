@@ -1,7 +1,7 @@
 # CFPNet: Improving Lightweight ToF Depth Completion via Cross-zone Feature Propagation
 ###  [Paper]
 
-The paper has been accepted to 3DV 2025. I will provide the link to the paper once it is available either from the conference or Arxiv.
+The paper has been accepted to 3DV 2025. The arxiv version of the paper is at [here](https://arxiv.org/abs/2109.14894).
 
 
 ### Installation
@@ -56,6 +56,16 @@ If you do not set the selected_epoch, the code will go through all available epo
 
 If you find this code useful for your research, please use the following BibTeX entry. 
 
+```bash
+@misc{ding2024cfpnet,
+    title={CFPNet: Improving Lightweight ToF Depth Completion via Cross-zone Feature Propagation},
+    author={Laiyan Ding and Hualie Jiang and Rui Xu and Rui Huang},
+    year={2024},
+    eprint={2411.04480},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
+```
 
 ## Acknowledgements
 
