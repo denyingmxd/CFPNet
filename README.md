@@ -4,7 +4,7 @@
 The paper has been accepted to 3DV 2025. The arxiv version of the paper is at [here](https://arxiv.org/pdf/2411.04480).
 
 SelfToF extends CFPNet to a self-supervised framework. Interested readers may go to [paper](https://arxiv.org/abs/2506.13444) and
-[code](https://github.com/denyingmxd/CFPNet) for more details.
+[code](https://github.com/denyingmxd/selftof) for more details.
 
 ### Pipeline of CFPNet
 
